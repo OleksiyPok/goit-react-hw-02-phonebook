@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Form = styled.div`
   border: 2px solid;
   margin-bottom: 20px;
   width: 100%;

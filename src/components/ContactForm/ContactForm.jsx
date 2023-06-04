@@ -1,10 +1,19 @@
 // import PropTypes from 'prop-types';
 
-import { Container, Label, Input, Button } from './ContactForm.styled';
+import { Form, Label, Input, Button } from './ContactForm.styled';
 
 const ContactForm = () => {
+  function handleInput({ target }) {
+    console.log(target.value);
+    // [target.name]=target.value
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
   return (
-    <Container>
+    <Form onSubmit={handleSubmit}>
       <Label htmlFor="personName">Name</Label>
       <Input
         type="text"
@@ -12,6 +21,7 @@ const ContactForm = () => {
         id="personName"
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+        onChange={handleInput}
         required
       />
       <Label htmlFor="number">Number</Label>
@@ -21,10 +31,11 @@ const ContactForm = () => {
         id="number"
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+        onChange={handleInput}
         required
       />
-      <Button>Add contact</Button>
-    </Container>
+      <Button type="submit">Add contact</Button>
+    </Form>
   );
 };
 

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Ul = styled.ul`
   width: 100%;
-  list-style: none;
+  list-style: square;
 `;
 
 export const Li = styled.li`
@@ -20,7 +20,11 @@ export const Li = styled.li`
 //     margin-top: 10px;
 //   }
 //   &:before {
-//     content: '\200B';
+//     content: '';
+//     background: black;
+//     width: 7px;
+//     height: 7px;
+//     border-radius: 50%;
 //   }
 // `;
 
