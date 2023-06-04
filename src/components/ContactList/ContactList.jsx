@@ -3,7 +3,7 @@
 import { Ul, Li } from './ContactList.styled';
 
 const ContactList = ({ contacts }) => {
-  // console.log('contacts:', contacts);
+  console.log('contacts:', contacts);
   return (
     <Ul>
       {contacts.map(person => (
