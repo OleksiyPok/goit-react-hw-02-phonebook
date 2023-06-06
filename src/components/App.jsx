@@ -1,6 +1,6 @@
 import { Component } from 'react';
 // import PropTypes from 'prop-types';
-// import { nanoid } from 'nanoid';
+import { nanoid, customAlphabet } from 'nanoid';
 
 import Section from './Section';
 import ContactForm from './ContactForm';
@@ -20,9 +20,23 @@ export default class App extends Component {
     number: '',
   };
 
-  // createPerson = person => {
-  //   console.log('person:', person);
-  // };
+  createPerson = person => {
+    const nanoid = customAlphabet('1234567890ABCDEF', 24);
+
+    const newContact = {
+      id: nanoid(),
+      name: person.name,
+      number: person.number,
+    };
+
+    this.setState({
+      contacts: [...this.state.contacts, { ...newContact }],
+    });
+  };
+
+  // printState() {
+  //   console.log('this.state.contacts:', this.state.contacts);
+  // }
 
   // deletePerson = person => {
   //   console.log('person:', person);
@@ -38,9 +52,10 @@ export default class App extends Component {
         <h1>Phonebook</h1>
         <Section>
           <ContactForm
-          // dataOperation={
-          //   (this.createPerson, this.deletePerson, this.getPersonData)
-          // }
+            createPerson={this.createPerson}
+            // dataOperation={
+            //   (this.createPerson, this.deletePerson, this.getPersonData)
+            // }
           ></ContactForm>
         </Section>
         <Section title="Contacts">
