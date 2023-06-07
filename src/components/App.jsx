@@ -16,11 +16,9 @@ export default class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
-  createPerson = person => {
+  handleCreatePerson = person => {
     const nanoid = customAlphabet('1234567890ABCDEF', 24);
 
     const newContact = {
@@ -34,15 +32,20 @@ export default class App extends Component {
     });
   };
 
-  // printState() {
-  //   console.log('this.state.contacts:', this.state.contacts);
-  // }
+  handleFilterPerson = e => {
+    this.setState.filter = e.target.value;
+    const filteredPersons = this.state.contacts.filter(person =>
+      person.name.includes(e.target.value)
+    );
 
-  // deletePerson = person => {
+    console.log(filteredPersons);
+  };
+
+  // handleDeletePerson = person => {
   //   console.log('person:', person);
   // };
 
-  // getPersonData = person => {
+  // getPerson = person => {
   //   console.log('person:', person);
   // };
 
@@ -52,14 +55,14 @@ export default class App extends Component {
         <h1>Phonebook</h1>
         <Section>
           <ContactForm
-            createPerson={this.createPerson}
+            handleCreatePerson={this.handleCreatePerson}
             // dataOperation={
-            //   (this.createPerson, this.deletePerson, this.getPersonData)
+            //   (this.handleCreatePerson, this.deletePerson, this.getPersonData)
             // }
           ></ContactForm>
         </Section>
         <Section title="Contacts">
-          <FilterForm></FilterForm>
+          <FilterForm handleFilterPerson={this.handleFilterPerson}></FilterForm>
           <ContactList contacts={this.state.contacts}></ContactList>
         </Section>
       </div>
