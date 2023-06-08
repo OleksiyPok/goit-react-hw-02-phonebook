@@ -32,24 +32,39 @@ export default class App extends Component {
     });
   };
 
-  handleFilterPerson = e => {
-    this.setState.filter = e.target.value;
-    const filteredPersons = this.state.contacts.filter(person =>
-      person.name.includes(e.target.value)
-    );
-
-    console.log(filteredPersons);
+  handleDeletePerson = personId => {
+    this.setState(({ contacts }) => ({
+      contacts: contacts.filter(({ id }) => id !== personId),
+    }));
   };
 
-  // handleDeletePerson = person => {
-  //   console.log('person:', person);
-  // };
+  setFilter = e => {
+    this.setState({ filter: e.target.value });
+  };
 
-  // getPerson = person => {
-  //   console.log('person:', person);
+  getFilteredPersons = () => {
+    const filter = this.state.filter.toLowerCase();
+    const allPersons = this.state.contacts;
+    const filteredPersons = allPersons.filter(person =>
+      person.name.toLowerCase().includes(filter)
+    );
+    return filteredPersons;
+  };
+
+  // capitalize = (person) => {
+  //   const person = this.state.contacts.split(' ');
+
+  //   for (let i = 0; i < person.length; i++) {
+  //     person[i] = person[i][0].toUpperCase() + person[i].substr(1);
+  //   }
+
+  //   person.join(' ');
+  //   console.log(person);
+  //   return person;
   // };
 
   render() {
+    const filteredPersons = this.getFilteredPersons();
     return (
       <div>
         <h1>Phonebook</h1>
@@ -62,8 +77,11 @@ export default class App extends Component {
           ></ContactForm>
         </Section>
         <Section title="Contacts">
-          <FilterForm handleFilterPerson={this.handleFilterPerson}></FilterForm>
-          <ContactList contacts={this.state.contacts}></ContactList>
+          <FilterForm setFilter={this.setFilter}></FilterForm>
+          <ContactList
+            contacts={filteredPersons}
+            handleDeletePerson={this.handleDeletePerson}
+          ></ContactList>
         </Section>
       </div>
     );

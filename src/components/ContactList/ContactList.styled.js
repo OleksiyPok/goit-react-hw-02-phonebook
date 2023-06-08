@@ -3,18 +3,7 @@ import styled from 'styled-components';
 export const Ul = styled.ul`
   width: 100%;
   list-style: square;
-  /* display: flex;
-  flex-direction: column;
-  gap: 4px; */
-  /* justify-items: space-between; */
 `;
-
-// export const Li = styled.li`
-//   /* display: flex; */
-//   flex-direction: row;
-//   justify-content: space-between;
-//   margin-top: 10px;
-// `;
 
 export const Li = styled.li`
   position: relative;
@@ -22,7 +11,6 @@ export const Li = styled.li`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* margin-top: 10px; */
   padding: 4px;
 
   &:before {
@@ -39,5 +27,5 @@ export const Li = styled.li`
 `;
 
 export const Button = styled.button`
-  height: 25px;
+  /* height: 25px; */
 `;

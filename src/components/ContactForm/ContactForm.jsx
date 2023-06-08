@@ -51,7 +51,7 @@ class ContactForm extends Component {
           value={this.state.number}
           required
         />
-        <button type="submit">Add contact</button>
+        <Button type="submit">Add contact</Button>
       </Form>
     );
   }
