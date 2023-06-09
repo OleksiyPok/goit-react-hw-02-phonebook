@@ -1,21 +1,19 @@
 import { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-import { Ul, Li, Button } from './ContactList.styled';
+import { Ul, Li, Span, Button } from './ContactList.styled';
 
 class ContactList extends Component {
   render() {
     const contacts = this.props.contacts;
-    const handleDeletePerson = this.props.handleDeletePerson;
+    const deletePerson = this.props.deletePerson;
     return (
       <Ul>
         {contacts.map(person => (
           <Li key={person.id}>
-            <span>{person.name}:</span>
-            <span>{person.number}</span>
-            <Button onClick={() => handleDeletePerson(person.id)}>
-              Delete
-            </Button>
+            <Span>{person.name}:</Span>
+            <Span>{person.number}</Span>
+            <Button onClick={() => deletePerson(person.id)}>Delete</Button>
           </Li>
         ))}
       </Ul>
@@ -25,4 +23,13 @@ class ContactList extends Component {
 
 export default ContactList;
 
-// ContactList.propTypes = {};
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }).isRequired
+  ),
+  deletePerson: PropTypes.func.isRequired,
+};

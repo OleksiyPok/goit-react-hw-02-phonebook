@@ -1,5 +1,5 @@
 import { Component } from 'react';
-// import PropTypes from 'prop-types';
+
 import { nanoid, customAlphabet } from 'nanoid';
 
 import Section from './Section';
@@ -18,7 +18,7 @@ export default class App extends Component {
     filter: '',
   };
 
-  handleCreatePerson = person => {
+  createPerson = person => {
     const nanoid = customAlphabet('1234567890ABCDEF', 24);
 
     const newContact = {
@@ -27,12 +27,20 @@ export default class App extends Component {
       number: person.number,
     };
 
-    this.setState({
-      contacts: [...this.state.contacts, { ...newContact }],
-    });
+    if (
+      this.state.contacts.some(
+        person => person.name.toLowerCase() === newContact.name.toLowerCase()
+      )
+    ) {
+      alert(`${newContact.name} is already in contacts.`);
+    } else {
+      this.setState({
+        contacts: [...this.state.contacts, { ...newContact }],
+      });
+    }
   };
 
-  handleDeletePerson = personId => {
+  deletePerson = personId => {
     this.setState(({ contacts }) => ({
       contacts: contacts.filter(({ id }) => id !== personId),
     }));
@@ -51,36 +59,19 @@ export default class App extends Component {
     return filteredPersons;
   };
 
-  // capitalize = (person) => {
-  //   const person = this.state.contacts.split(' ');
-
-  //   for (let i = 0; i < person.length; i++) {
-  //     person[i] = person[i][0].toUpperCase() + person[i].substr(1);
-  //   }
-
-  //   person.join(' ');
-  //   console.log(person);
-  //   return person;
-  // };
-
   render() {
     const filteredPersons = this.getFilteredPersons();
     return (
       <div>
         <h1>Phonebook</h1>
         <Section>
-          <ContactForm
-            handleCreatePerson={this.handleCreatePerson}
-            // dataOperation={
-            //   (this.handleCreatePerson, this.deletePerson, this.getPersonData)
-            // }
-          ></ContactForm>
+          <ContactForm createPerson={this.createPerson}></ContactForm>
         </Section>
         <Section title="Contacts">
           <FilterForm setFilter={this.setFilter}></FilterForm>
           <ContactList
             contacts={filteredPersons}
-            handleDeletePerson={this.handleDeletePerson}
+            deletePerson={this.deletePerson}
           ></ContactList>
         </Section>
       </div>

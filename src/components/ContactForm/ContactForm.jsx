@@ -1,5 +1,5 @@
 import { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { Form, Label, Input, Button } from './ContactForm.styled';
 
@@ -15,11 +15,10 @@ class ContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // this.props.handleCreatePerson(this.state);
 
-    this.props.handleCreatePerson({
-      name: this.state.name,
-      number: this.state.number,
+    this.props.createPerson({
+      name: this.state.name.trim(),
+      number: this.state.number.trim(),
     });
 
     this.setState({ name: '', number: '' });
@@ -27,14 +26,15 @@ class ContactForm extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit} autocomplete="off">
         <Label htmlFor="name">Name</Label>
         <Input
           type="text"
           name="name"
           id="name"
-          // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          autocomplete="off"
           onChange={this.handleInput}
           value={this.state.name}
           required
@@ -44,9 +44,10 @@ class ContactForm extends Component {
           type="tel"
           name="number"
           id="number"
-          // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           placeholder="+ ...."
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          autocomplete="off"
           onChange={this.handleInput}
           value={this.state.number}
           required
@@ -59,4 +60,6 @@ class ContactForm extends Component {
 
 export default ContactForm;
 
-// ContactForm.propTypes = {};
+ContactForm.propTypes = {
+  createPerson: PropTypes.func.isRequired,
+};

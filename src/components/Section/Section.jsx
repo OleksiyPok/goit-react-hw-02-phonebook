@@ -1,5 +1,5 @@
 import { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { Container, Title } from './Section.styled';
 
@@ -16,10 +16,10 @@ class Section extends Component {
 
 export default Section;
 
-// Section.propTypes = {
-//   title: PropTypes.string,
-//   children: PropTypes.oneOfType([
-//     PropTypes.arrayOf(PropTypes.node),
-//     PropTypes.node,
-//   ]),
-// };
+Section.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+};
