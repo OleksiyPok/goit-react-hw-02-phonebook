@@ -44,8 +44,8 @@ class ContactForm extends Component {
           type="tel"
           name="number"
           id="number"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          placeholder="+ ...."
+          title="Phone number must be at least 5 digits, can contain spaces, dashes, parentheses and can start with +"
+          placeholder="+ ..."
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           autocomplete="off"
           onChange={this.handleInput}
