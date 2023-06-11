@@ -38,9 +38,9 @@ export default class App extends Component {
     }
   };
 
-  deletePerson = personId => {
+  deletePerson = delPersonId => {
     this.setState(({ contacts }) => ({
-      contacts: contacts.filter(({ id }) => id !== personId),
+      contacts: contacts.filter(({ id }) => id !== delPersonId),
     }));
   };
 
