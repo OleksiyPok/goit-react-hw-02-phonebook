@@ -10,8 +10,6 @@ const FilterForm = ({ setFilter }) => {
         type="text"
         name="personName"
         id="personName"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         autocomplete="off"
         onChange={setFilter}
         required

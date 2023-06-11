@@ -1,25 +1,20 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Ul, Li, Span, Button } from './ContactList.styled';
 
-class ContactList extends Component {
-  render() {
-    const contacts = this.props.contacts;
-    const deletePerson = this.props.deletePerson;
-    return (
-      <Ul>
-        {contacts.map(person => (
-          <Li key={person.id}>
-            <Span>{person.name}:</Span>
-            <Span>{person.number}</Span>
-            <Button onClick={() => deletePerson(person.id)}>Delete</Button>
-          </Li>
-        ))}
-      </Ul>
-    );
-  }
-}
+const ContactList = ({ contacts, deletePerson }) => {
+  return (
+    <Ul>
+      {contacts.map(person => (
+        <Li key={person.id}>
+          <Span>{person.name}:</Span>
+          <Span>{person.number}</Span>
+          <Button onClick={() => deletePerson(person.id)}>Delete</Button>
+        </Li>
+      ))}
+    </Ul>
+  );
+};
 
 export default ContactList;
 
