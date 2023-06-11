@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import { nanoid, customAlphabet } from 'nanoid';
+import { nanoid } from 'nanoid';
 
 import Section from './Section';
 import ContactForm from './ContactForm';
