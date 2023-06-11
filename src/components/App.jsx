@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import { nanoid, customAlphabet } from 'nanoid';
+import { nanoid } from 'nanoid';
 
 import Section from './Section';
 import ContactForm from './ContactForm';
@@ -19,8 +19,6 @@ export default class App extends Component {
   };
 
   createPerson = person => {
-    const nanoid = customAlphabet('1234567890ABCDEF', 24);
-
     const newContact = {
       id: nanoid(),
       name: person.name,
